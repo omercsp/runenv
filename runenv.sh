@@ -69,10 +69,10 @@ if [[ -z ${RE_IMAGE} ]]; then
 		exit 1
 	else
 		if [[ ${RE_NOTIFY_NATIVE} -eq 1 ]]; then
-			echo "No image found, running native command '${RE_CMD}'"
+			echo "No image found, running native command '${cmd}'"
 			echo
 		fi
-		${RE_CMD}
+		${cmd}
 		exit $?
 	fi
 fi
