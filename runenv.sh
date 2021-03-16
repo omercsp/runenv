@@ -60,6 +60,7 @@ _set_variable "RE_USE_CUR_CWD" "1" "0 1"
 _set_variable "RE_CWD"
 _set_variable "RE_CMD" "" ""
 _set_variable "RE_REUSE_CONTAINER" "0" "0 1"
+_set_variable "RE_CMD_PREFIX" "bash -c"
 
 cmd=$*
 [[ -z ${cmd} ]] && cmd=${RE_CMD}
@@ -159,9 +160,9 @@ if [[ ${RE_REUSE_CONTAINER} -eq 1 ]]; then
 			exit 1
 		fi
 	fi
-	${RE_TOOL} exec ${RE_EXEC_FLAGS} ${container_name} bash -c "${cmd}"
+	${RE_TOOL} exec ${RE_EXEC_FLAGS} ${container_name} ${RE_CMD_PREFIX} "${cmd}"
 else
-	${RE_TOOL} run ${RE_RUN_FLAGS} ${RE_IMAGE} bash -c "${cmd}"
+	${RE_TOOL} run ${RE_RUN_FLAGS} ${RE_IMAGE} ${RE_CMD_PREFIX} "${cmd}"
 fi
 ret=$?
 
