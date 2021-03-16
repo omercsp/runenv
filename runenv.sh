@@ -9,10 +9,10 @@ _set_variable()
 	local legal_values=$3
 	local env_name=_$name
 
-	if [[ -n ${!env_name} ]]; then
-		eval ${name}=${!env_name}
-	elif [[ -z ${!name} ]]; then
-		eval ${name}=${default}
+	if [[ -n ${!env_name+x} ]]; then
+		eval ${name}=\"${!env_name}\"
+	elif [[ -z ${!name+x} ]]; then
+		eval ${name}=\"${default}\"
 	fi
 
 	[[ -z ${legal_values} ]] && return
