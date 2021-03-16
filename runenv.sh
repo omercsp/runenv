@@ -59,6 +59,7 @@ _set_variable "RE_COLORS" "0" "0 1"
 _set_variable "RE_USE_CUR_CWD" "1" "0 1"
 _set_variable "RE_CWD"
 _set_variable "RE_CMD" "" ""
+_set_variable "RE_REUSE_CONTAINER" "0" "0 1"
 
 cmd=$*
 [[ -z ${cmd} ]] && cmd=${RE_CMD}
