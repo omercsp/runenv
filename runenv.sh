@@ -55,7 +55,7 @@ _set_variable "RE_RUN_FLAGS"
 _set_variable "RE_EXEC_FLAGS"
 _set_variable "RE_VOL_MAPPING"
 _set_variable "RE_VOL_PWD" "0" "0 1"
-_set_variable "RE_COLORS" "0" "0 1"
+_set_variable "RE_COLORS" "1" "0 1"
 _set_variable "RE_USE_CUR_CWD" "1" "0 1"
 _set_variable "RE_CWD"
 _set_variable "RE_CMD" "" ""
@@ -98,11 +98,11 @@ fi
 if [[ ${RE_REUSE_CONTAINER} -eq 1 ]]; then
 	container_name=$(echo ${RE_IMAGE} ${RE_RUN_FLAGS} | md5sum | cut -d' ' -f1)
 	container_id=$(${RE_TOOL} ps -a --filter=name=${container_name} --format="{{.Names}}")
-	RE_RUN_FLAGS+=" -d -t"
-	[[ ${RE_COLORS} -eq 0 ]] && RE_EXEC_FLAGS+=" -t"
+	RE_RUN_FLAGS+=" -d -t" # Unless '-t' is set, we can't exec commands on it
+	[[ ${RE_COLORS} -eq 1 ]] && RE_EXEC_FLAGS+=" -t"
 else
 	RE_RUN_FLAGS+="${RE_EXEC_FLAGS} --rm"
-	[[ -z ${RE_COLORS} || ${RE_COLORS} -ne 0 ]] && ${RE_RUN_FLAGS}+=" -t"
+	[[ ${RE_COLORS} -eq 1 ]] && RE_RUN_FLAGS+=" -t"
 fi
 
 # Show some run environment info and maybe a minor splash screen
