@@ -24,12 +24,12 @@ _set_variable()
 
 _variable_str()
 {
-	local var=$1
+	local var="$*"
 
 	if [[ -z ${var} ]]; then
 		echo "<None>"
 	else
-		echo ${var}
+		echo "${var}"
 	fi
 }
 
