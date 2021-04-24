@@ -81,9 +81,9 @@ fi
 
 # Set working direcotry, defult to current directory
 if [[ -n ${RE_CWD} ]]; then
-	RE_RUN_FLAGS+="-w=${RE_CWD}"
+	RE_RUN_FLAGS+=" -w=${RE_CWD}"
 elif [[ ${RE_USE_CUR_CWD} -eq 1 ]]; then
-	RE_RUN_FLAGS+="-w=$(pwd)"
+	RE_RUN_FLAGS+=" -w=$(pwd)"
 fi
 
 # Set volume mappings
