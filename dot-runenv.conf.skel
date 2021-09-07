@@ -1,65 +1,60 @@
-# Set image to use for build environment, for example
-# "docker.io/library/golang:latest"
+# Set image to use for build environment, for example "docker.io/library/golang:latest". By default,
+# if no image is set runevn will try to run the command natively  in the shell. See RE_CMD and
+# RE_CONTAINER_ONLY settings.
 RE_IMAGE=
 
-# Set this to have the container always run this command. This setting is
-# overridden by CLI argument (e.g. "runenv.sh overriding-command")
+# Set this to have the container always run this command. This setting is overridden by CLI argument
+# (e.g. "runenv.sh overriding-command")
 #RE_CMD=""
 
 # Set to 1 to map current working directory into the container
 #RE_VOL_PWD=0
 
-# Sets a list of volume mappings, separated by semicolon. Translates to
-# container volumes with -v flag. The format should be compatible, i.e.
-# <DIR>:<DIR>. A possible mapping can be $(pwd):$(pwd).
+# Sets a list of volume mappings, separated by semicolon. Translates to container volumes with -v
+# flag. The format should be compatible, i.e. <DIR>:<DIR>. A possible mapping can be $(pwd):$(pwd).
 #RE_VOL_MAPPING=
 
 # Set to 0 to remove container after each run.
 #DE_REUSE_CONTAINER=1
 
 # Set to 0 to skip the wonderful splash runenv message
-# RE_SHOW_SPLASH=1
+#RE_SHOW_SPLASH=1
 
 # Set the container running tool (e.g. podman, docker), default is podman
 #RE_TOOL=podman
 
-# Set to 0 to print only the command output, not container and environment
-# details are printed to the screen.
+# Set to 0 to print only the command output, not container and environment details are printed to
+# the screen.
 #RE_VERBOSE=1
 
-# Set to 1 to generate a message when the script runs the command natively and
-# not inside a container. This happens only if RE_IMAGE is empty.
+# Set to 1 to generate a message when runenv runs the command natively and not inside a container.
+# This happens only if RE_IMAGE is empty.
 #RE_NOTIFY_NATIVE=0
 
-# Set to to 1 to to force the command only in container. If RE_IMAGE is empty,
-# the script will fail.
+# Set to to 1 to to force the command only in container. If RE_IMAGE is empty, the script will fail.
 #RE_CONTAINER_ONLY=0
 
-# Set extra running flags for the tool "run" command (i.e. "docker run
-# $RE_RUN_FLAGS)
+# Set extra running flags for the tool "run" command (i.e. "docker run $RE_RUN_FLAGS)
 #RE_RUN_FLAGS=""
 
-# Set extra running flags for the tool "exec" command (i.e. "docker run
-# $RE_RUN_FLAGS). This setting has meaning only if RE_REUSE_CONTAINER is set
-# set to 1, where the container is created with the "run" command, but the
-# command itself is ran using the "exec" command.
+# Set extra running flags for the tool "exec" command (i.e. "docker exec $RE_RUN_FLAGS). This
+# setting has meaning only if RE_REUSE_CONTAINER is set set to 1, where the container is created
+# with the "run" command, but the command itself is ran using the "exec" command.
 #RE_EXEC_FLAGS=""
 
-# set to 0 to disable colors in the command output (as modern gcc does). This
-# is handy when using the script inside IDEs or other editors (like vim), that
-# don't read the colors characters correctly.
+# Set to 0 to disable colors in the command output (as modern gcc does). This is handy when using
+# the script inside IDEs or other editors (like vim), that don't read the colors characters
+# correctly.
 #RE_COLORS=1
 
 # Sets the working directory of the container
 #RE_CWD=""
 
-# By default, if RE_CWD isn't set, runenv sets the container working directory as
-# the current directory. Set this setting to 0 to disable this behavior (no CWD
-# is set for the container)
+# By default, if RE_CWD isn't set, runenv sets the container working directory as the current
+# directory. Set this setting to 0 to disable this behavior (no CWD is set for the container)
 #RE_USE_CUR_CWD=1
 
-# Unless set, runenv will prefix the command with 'bash -c', so the actual
-# command being ran is 'bash -c "<COMMAND>"'. This is to allow complex bash
-# commands with argument and pipes. If a different prefix, or no prefix at all
-# is desired, modify this setting to the correct value.
+# Unless set, runenv will prefix the command with 'bash -c', so the actual command being ran is
+# 'bash -c "<COMMAND>"'. This is to allow complex bash commands with argument and pipes. If a
+# different prefix, or no prefix at all is desired, modify this setting to the correct value.
 #RE_CMD_PREFIX="bash -c"
