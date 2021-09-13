@@ -62,8 +62,16 @@ _set_variable "RE_CMD" "" ""
 _set_variable "RE_REUSE_CONTAINER" "0" "0 1"
 _set_variable "RE_CMD_PREFIX" "bash -c"
 
+soft_cmd=0
+if [[ ${1} == "-s" || ${1} == "--soft_cmd" ]]; then
+	soft_cmd=1
+	shift
+fi
+
 cmd=$*
-[[ -z ${cmd} ]] && cmd=${RE_CMD}
+if [[ -z ${cmd}  ]] || [[ ${soft_cmd} -eq 1 && -n ${RE_CMD} ]]; then
+	cmd=${RE_CMD}
+fi
 
 if [[ -z ${RE_IMAGE} ]]; then
 	if [[ ${RE_CONTAINER_ONLY} -eq 1 ]]; then
